@@ -1,7 +1,5 @@
 package com.example.recyclerview
 
-import android.util.DisplayMetrics
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,23 +27,19 @@ class MyAdapter(val publicacionList: ArrayList<Publicacion>) : RecyclerView.Adap
 
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         fun bindItems(publicacion: Publicacion){
-            val id = itemView.findViewById(R.id.id) as TextView
             val nombre = itemView.findViewById(R.id.nombre) as TextView
-            val usuario = itemView.findViewById(R.id.usuario) as TextView
             val hora = itemView.findViewById(R.id.hora) as TextView
             val texto = itemView.findViewById(R.id.texto) as TextView
-            val img = itemView.findViewById(R.id.imageview) as ImageView
+            val imagen = itemView.findViewById(R.id.imagen) as ImageView
 
-            id.text = publicacion.id.toString()
             nombre.text = publicacion.nombre
-            usuario.text = publicacion.usuario
-            hora.text = publicacion.hora.toString()
+            hora.text = publicacion.hora
             texto.text = publicacion.texto
             if(publicacion.imagen != null){
-                img.layoutParams.height = 413
-                img.layoutParams.width = 210
-                img.requestLayout()
-                img.setImageResource(publicacion.imagen)
+                imagen.layoutParams.height = 540
+                imagen.layoutParams.width = 1080
+                imagen.setImageResource(R.drawable.abc)
+                imagen.requestLayout()
             }
         }
     }
