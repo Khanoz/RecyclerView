@@ -4,32 +4,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
+    private  val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView);
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
-        val publicaciones = ArrayList<Publicacion>();
-        publicaciones.add(Publicacion(0, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(1, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(2, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(3, "Miguel", "@MG1", "10", "Lo que sea", R.drawable.abc, null));
-        publicaciones.add(Publicacion(4, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(5, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(6, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(7, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(8, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(9, "Miguel", "@MG1", "10", "Lo que sea", R.drawable.abc, null));
-        publicaciones.add(Publicacion(10, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(11, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(12, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(13, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(14, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        publicaciones.add(Publicacion(15, "Miguel", "@MG1", "10", "Lo que sea", null, null));
-        val adapter = MyAdapter(publicaciones);
-        recyclerView.adapter = adapter
+        //val publicaciones = ArrayList<Publicacion>();
+
+        db.collection("publicaciones").addSnapshotListener { value, error ->
+            val publicaciones = value!!.toObjects(Publicacion::class.java)
+
+            publicaciones.forEachIndexed { index, publicacion ->
+                publicacion.uid = value.documents[index].id
+            }
+            val adapter = MyAdapter(publicaciones);
+            recyclerView.adapter = adapter
+        }
     }
 }
