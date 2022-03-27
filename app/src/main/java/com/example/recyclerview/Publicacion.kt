@@ -10,10 +10,11 @@ data class Publicacion(
                        val texto:String?,
                        val likes: ArrayList<String>? = arrayListOf(),
                        val imagen: Int? = null,
-                       val video: Int? = null){
+                       val video: Int? = null,
+                       val ultimaEdicion: Date? = null){
     @Exclude
     @set:Exclude
     @get:Exclude
     var uid: String? = null
-    constructor(): this(null,null,null,null,null,null)
+    constructor(): this(null,null,null,null,null,null, null)
 }

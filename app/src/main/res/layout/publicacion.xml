@@ -3,13 +3,14 @@
 <androidx.cardview.widget.CardView
     android:id="@+id/cardview"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp">
 
     <LinearLayout
-        android:layout_width="413dp"
+        android:layout_width="410dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -24,7 +25,7 @@
                 android:src="@drawable/img"/>
             
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -34,7 +35,6 @@
                     android:layout_height="wrap_content"
                     android:text="Nombre del Usuario"
                     android:textSize="11dp"/>
-
                 <TextView
                     android:id="@+id/hora"
                     android:layout_width="match_parent"
@@ -43,6 +43,15 @@
                     android:textSize="10dp"/>
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_baseline_list_24"
+                android:layout_marginStart="137dp"
+                android:background="@null"/>
+
         </LinearLayout>
 
         <TextView
@@ -75,8 +84,8 @@
                 android:layout_marginStart="150dp"
                 android:src="@drawable/comentar"/>
         </LinearLayout>
-
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
 
