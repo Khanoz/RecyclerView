@@ -79,7 +79,7 @@ class MyAdapter(val publicacionList: List<Publicacion>, val cont : Context) : Re
                 }
                 true
             }
-            view.setOnLongClickListener {
+            view.setOnClickListener {
                 try{
                     val popup = PopupMenu::class.java.getDeclaredField("mPopup")
                     popup.isAccessible = true
